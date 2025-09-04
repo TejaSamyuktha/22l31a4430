@@ -16,7 +16,7 @@ This app lets users shorten long URLs, track clicks, and view statistics like cr
 
 ## 📸 Screenshot
 
-![App Screenshot](https://github.com/user-attachments/assets/64d70981-cd46-421a-ad22-7ba5549e9672)
+![App Screenshot](https://github.com/user-attachments/assets/e8fa316b-031b-417b-a165-d9fa466f2e67)
 
 ---
 
