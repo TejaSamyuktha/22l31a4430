@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import ShortenerForm from "./components/ShortenerForm";
+import ShortStatistics from "./components/ShortStatistics";
 
-function App() {
+export default function App() {
+  const [shortUrls, setShortUrls] = useState([]);
+
+  useEffect(() => {
+    const stored = JSON.parse(localStorage.getItem("shortUrls") || "[]");
+    setShortUrls(stored);
+  }, []);
+
+  const updateShortUrls = (newList) => {
+    setShortUrls(newList);
+    localStorage.setItem("shortUrls", JSON.stringify(newList));
+  };
+
+  const handleAddUrl = (urlData) => {
+    updateShortUrls([...shortUrls, urlData]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box
+      minHeight="100vh"
+      sx={{
+        background: "#111",
+        color: "#fff",
+        padding: 4,
+      }}
+    >
+      <Typography variant="h3" fontWeight="bold" mb={4}>
+        React URL Shortener
+      </Typography>
+      <ShortenerForm onAddUrl={handleAddUrl} />
+      <ShortStatistics shortUrls={shortUrls} setShortUrls={updateShortUrls} />
+    </Box>
   );
 }
-
-export default App;
